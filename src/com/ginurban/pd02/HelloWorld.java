@@ -1,7 +1,7 @@
 /**
  * 
  */
-package lt.vtmc.pd01;
+package com.ginurban.pd02;
 
 /**
  * The Hello World class implements an application
