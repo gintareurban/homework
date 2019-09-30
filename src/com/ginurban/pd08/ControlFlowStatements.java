@@ -18,7 +18,17 @@ public class ControlFlowStatements {
 
 
 	public static void main(String[] args) {
-		//8.1 demo use of if-then, if-then-else, switch statements
+		//8.1 demo if-then statement
+		//check if the application should be launched
+				System.out.println("Do you want to start the application (y/n): ");
+				char proceed = input.next().toLowerCase().charAt(0);
+
+				if (proceed == 'n') {       //demo if-then statement
+					System.out.println("Application terminated.");
+					return; //demo return
+				}
+				
+		//8.1 demo use of if-then-else, switch statements
 		callIfSwitch();
 		//8.2 demo use of For, while, do-while loops
 		callForWhile();
@@ -33,21 +43,10 @@ public class ControlFlowStatements {
 	}
 
 	public static void callIfSwitch() {
-		/* demonstrating the use of if-then, if-then-else and switch statements; also break and return;
+		/* demonstrating the use of if-then-else and switch statements; also break and return;
 		 *  method takes one argument as month number (1 to 12) and
 		 *  prints out the number of calendar days in that month 
 		 */ 
-
-
-		//check if the application should be launched
-		System.out.println("Do you want to start the application (y/n): ");
-		char proceed = input.next().toLowerCase().charAt(0);
-
-		if (proceed == 'n') {       //demo if-then statement
-			System.out.println("Application terminated.");
-			return; //demo return
-		}
-
 
 		System.out.println("Please enter month number (1 to 12): ");
 		int month = input.nextInt();
@@ -55,7 +54,6 @@ public class ControlFlowStatements {
 		int year = input.nextInt();
 		// initialize variable for output
 		int numDays = 0;
-
 
 		// demo switch, if-then-else statements
 		switch(month){
@@ -244,15 +242,6 @@ public class ControlFlowStatements {
 			}
 		}
 		return isPrime;
-		
-//		
-//		int sum = 0;
-//		while (num > 0) {
-//			sum += num;
-//			num--;
-//		}
-//		return sum;
-
 	}
 
 	public static void checkInputType() {
