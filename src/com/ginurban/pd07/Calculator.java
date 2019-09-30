@@ -11,6 +11,8 @@ import java.util.Scanner;
  * The result is printed to standard output
  */
 public class Calculator {
+	//  setting up scanner to take user input
+	private static Scanner input = new Scanner(System.in);
 
 	public static void main(String[] args) {
 
@@ -18,18 +20,17 @@ public class Calculator {
 	}
 
 	public static void calculatorCall() {
-		//  setting up scanner to take user input
-		Scanner input = new Scanner(System.in);
 
-		//
+		//Check if the user wants to run the program
 		System.out.println("Do you want to start a calculator? (y/n)");
-		char proceed = input.next().charAt(0);
+		char proceed = input.next().toLowerCase().charAt(0);
 		if (proceed == 'n') {
 			input.close();
+			System.out.println("Calculator terminated.");
 			return;
 		}
 
-		// assign the first number input received to a variable
+		// assign the first numerical input received to a variable
 		System.out.println("Types of operations available: \n"
 				+ "1. Arithmetic ( +, -, *, /) \n"
 				+ "2. Exponentiation (square root, power of two, power of x) \n"
@@ -99,9 +100,8 @@ public class Calculator {
 			break;
 		default:
 			System.out.println("Invalid operation type selected.");
+			break;
 		}
-		input.close();
-
 	}
 
 
@@ -123,6 +123,7 @@ public class Calculator {
 			break;
 		default:
 			System.out.println("Invalid operator selected");
+			break;
 		}
 		System.out.printf("%.4f %c %.4f = %.4f", numOne, operator, numTwo, result);
 		System.out.println("\n");
@@ -166,6 +167,7 @@ public class Calculator {
 			break;
 		default:
 			System.out.println("Selected operation is invalid");
+			break;
 		}
 		System.out.println("\n");
 		calculatorCall();
@@ -177,23 +179,22 @@ public class Calculator {
 		switch(function) {
 		case "sin":
 			result = Math.sin(Math.toRadians(baseNum));
-			System.out.printf("sine of %.4f is %.4f", baseNum, result);
 			break;
 		case "cos":
 			result = Math.cos(Math.toRadians(baseNum));
-			System.out.printf("cosine of %.4f is %.4f", baseNum, result);
 			break;
 		case "tan":
 			result = Math.tan(Math.toRadians(baseNum));
-			System.out.printf("tangent of %.4f is %.4f", baseNum, result);
 			break;
 		case "cot":
 			result = 1.0/Math.tan(Math.toRadians(baseNum));
-			System.out.printf("cotangent of %.4f is %.4f", baseNum, result);
 			break;
 		default:
 			System.out.println("Selected function is invalid");
+			break;
 		}
+		//print result and format to 4 decimal places
+		System.out.printf(function+ "(%.4f) = %.4f", baseNum, result);
 		System.out.println("\n");
 		calculatorCall();
 	}
