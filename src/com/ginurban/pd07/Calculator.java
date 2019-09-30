@@ -25,7 +25,6 @@ public class Calculator {
 		System.out.println("Do you want to start a calculator? (y/n)");
 		char proceed = input.next().toLowerCase().charAt(0);
 		if (proceed == 'n') {
-			input.close();
 			System.out.println("Calculator terminated.");
 			return;
 		}
