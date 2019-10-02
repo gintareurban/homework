@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.ginurban.pd08;
 
 import java.util.Scanner;
@@ -11,13 +8,10 @@ import java.util.Scanner;
  */
 public class ControlFlowStatements {
 
-	/**
-	 * @param args
-	 */
 	private static Scanner input = new Scanner(System.in);
 
-
 	public static void main(String[] args) {
+		
 		//8.1 demo if-then statement
 		//check if the application should be launched
 				System.out.println("Do you want to start the application (y/n): ");
@@ -30,19 +24,25 @@ public class ControlFlowStatements {
 				
 		//8.1 demo use of if-then-else, switch statements
 		callIfSwitch();
+		
 		//8.2 demo use of For, while, do-while loops
 		callForWhile();
+		
 		//8.3 demo use of break, continue, return statements & 8.4 demo labeled break and continue statements 
 		callReturnBreakContinue();
+		
 		//8.5 demo return with a value statement
 		callReturnValue();
+		
 		//8.7 take input and check the type
 		checkInputType();
+		
 		//TODO 8.6 and 8.8 - not sure about the task
 
 	}
 
 	public static void callIfSwitch() {
+		
 		/* demonstrating the use of if-then-else and switch statements; also break and return;
 		 *  method takes one argument as month number (1 to 12) and
 		 *  prints out the number of calendar days in that month 
@@ -88,10 +88,11 @@ public class ControlFlowStatements {
 		System.out.printf("Month number %d in year %d has %d days \n \n", month, year, numDays);	
 
 	}
+	
 
 	public static void callForWhile() {
+		
 		//demo For loop, While loop, DoWhile loop and return statement;
-
 		System.out.println("Please enter a whole number for multiplication table: ");
 		int numOne = input.nextInt();
 
@@ -134,7 +135,6 @@ public class ControlFlowStatements {
 
 		if (lowerInt >= greaterInt) {
 			System.out.println("Invalid input: second number entered is not greater than the first number entered");
-			System.out.println("Application terminated");
 			return; //demo return;
 		}
 		int i = lowerInt;
@@ -146,15 +146,9 @@ public class ControlFlowStatements {
 		System.out.println("\n");
 
 	}
+	
 
 	public static void callReturnBreakContinue() {
-		//check if the application should keep running
-		System.out.println("Do you want to continue running the application (y/n): ");
-		char proceed = input.next().toLowerCase().charAt(0);
-		if (proceed == 'n') {       //demo if-then statement
-			System.out.println("Application terminated.");
-			return;
-		}
 
 		System.out.println("The following part illustrates the difference between labeled and unlabeled break. \n"
 				+ "Two dimentional array is built using For loop:");
@@ -212,22 +206,20 @@ public class ControlFlowStatements {
 			}
 		System.out.println();
 	}
+	
 
 	public static void callReturnValue() {
-		//check if the application should keep running
-		System.out.println("Do you want to continue running the application (y/n): ");
-		char proceed = input.next().toLowerCase().charAt(0);
-		if (proceed == 'n') {       //demo if-then statement
-			System.out.println("Application terminated.");
-			return;
-		}
+
 		System.out.println("This part will check if the given number is prime.");
 		System.out.println("Please enter a number:");
 		int inputNum = input.nextInt();
 		System.out.println(checkIfPrime(inputNum));
 		System.out.println();
 	}
+	
+	
 	private static boolean checkIfPrime(int num) {
+		
 		boolean isPrime = false; 
 		if(num <= 1) {
 			isPrime = false;
@@ -245,6 +237,7 @@ public class ControlFlowStatements {
 	}
 
 	public static void checkInputType() {
+		
 		System.out.println("This part will check the type of your input");
 		System.out.println("Please enter a random number/word(s): ");
 
