@@ -3,28 +3,28 @@ package com.ginurban.pd10;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Random;
-import java.util.StringTokenizer;
 
 /**
  * @author gintare
- * @version 0.1
+ * @version 1.1
  */
 public class AlgorithmBasicsExamples {
-	
+
 
 	public static void main(String[] args) {
 		//10.1 create an int array based on given length, fill it with random ints and sort elements asc
 		createAndSortRandomIntArray(120);
-		
+
 		//10.2.1 find a specified term in Fibonacci sequence in under 5 secs
 		findFibonacciTerm(120);
-		
+
 		//10.2.2 create two sorted Array from random integers, find largest values and calculate the average
 		findAverageForMaxValuesOfTwoArrays();
-		
-		//10.3 taking a string of words as argument, method creates an array based on number of tokens and sorts it
-		createAndSortStringArray("name surname date number address telephone street town district country");
-		
+
+		//10.3 taking the length of an array and the length of an element as arguments, method creates
+		//an array from random chars added to strings and sorts it
+		createAndSortRandomStringArray(10, 8);                   
+
 		//10.4 create an array of type Long containing a specified number of elements (i.e. 50k) and implement quick sort method
 		createAndQuickSortLongArray(50000);
 	}
@@ -32,13 +32,13 @@ public class AlgorithmBasicsExamples {
 
 
 	private static void createAndQuickSortLongArray(int arrayLength) {
-		
+
 		//initialize a variable to capture the start time of the method
 		long start = System.currentTimeMillis();
 
 		// initialize empty array based on length
 		long[] longArray = new long[arrayLength];
-		
+
 		// generate random long numbers and assign to array elements
 		Random random = new Random();
 		for(int i = 0; i < arrayLength; i++) {
@@ -55,7 +55,7 @@ public class AlgorithmBasicsExamples {
 
 		//initialize a variable to capture the end time of the method
 		long end = System.currentTimeMillis();
-		
+
 		//print out the execution time of the method in ms
 		System.out.printf("Creates and sorts Long Array with %d elements in %d ms", arrayLength, (end - start));
 
@@ -63,7 +63,7 @@ public class AlgorithmBasicsExamples {
 
 
 	private static long[] quickSortLongArray(long[] longArray, int start, int end) {
-		
+
 		// call partition method to find the index of pivot value 
 		int partition = partitionLongArray(longArray, start, end);
 
@@ -80,10 +80,10 @@ public class AlgorithmBasicsExamples {
 
 		return longArray;
 	}
-	
+
 
 	private static int partitionLongArray(long[] longArray, int start, int end) {
-		
+
 		/* assign the rightmost value in the array as the pivot value
 		 * All elements less than the pivot value will be placed on the left of the pivot value
 		 * All elements higher or equal to the pivot value get placed to the right side of the array
@@ -112,37 +112,44 @@ public class AlgorithmBasicsExamples {
 	}
 
 
-	
-	private static void createAndSortStringArray(String words) {
-		
-		//initiate stringtokenizer to read the argument passed and split by whitespace
-		StringTokenizer tokens = new StringTokenizer(words);
-		int tokenLength = tokens.countTokens();
-		
-		//initiate empty array of type string
-		String[] stringArray = new String[tokenLength];
-		//fill the array using stringtokenizer
-		for(int i = 0; i < tokenLength; i++) {
-			stringArray[i] = tokens.nextToken();
+
+	private static void createAndSortRandomStringArray(int arrayLength, int elementLength ) {
+
+		StringBuilder builder = new StringBuilder();
+		Random random = new Random();
+		char[] charArray = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
+				'L', 'M', 'N', 'O', 'P','Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+		};
+		String[] stringArray = new String[arrayLength];
+
+		for(int i = 0; i < arrayLength; i++) {
+			for (int j = 0; j < elementLength; j++) {
+				builder.append(charArray[random.nextInt(charArray.length)]);
+			}
+			stringArray[i] = builder.toString();
+			builder.setLength(0);
 		}
+
 		//print unsorted array, sort the array and print sorted array
 		System.out.println(Arrays.toString(stringArray));
 		Arrays.sort(stringArray);
 		System.out.println(Arrays.toString(stringArray));
 		System.out.println();
+
 	}
 
 
+
 	private static void findAverageForMaxValuesOfTwoArrays() {
-		
+
 		// call createAndSortRandomIntArray(int arrayLength) method to create two sorted Arrays
 		int[] arrayOne = createAndSortRandomIntArray(30);
 		int[] arrayTwo = createAndSortRandomIntArray(25);
-		
+
 		//assign the last element of each sorted array as a maxValue
 		int maxValueOne = arrayOne[arrayOne.length - 1];
 		int maxValueTwo = arrayTwo[arrayTwo.length - 1];
-		
+
 		//calculate average of max Values
 		double averageOfMaxVal = (maxValueOne + maxValueTwo)/2;
 		System.out.printf("Average of %d and %d is %.4f", maxValueOne, maxValueTwo, averageOfMaxVal);
@@ -150,9 +157,9 @@ public class AlgorithmBasicsExamples {
 	}
 
 
-	
+
 	private static void findFibonacciTerm(int fibonacciTerm) {
-		
+
 		//initialize a variable to capture the start time of the method
 		long start = System.currentTimeMillis();
 		/* initialize variables to capture the (n-2) and (n-1) term values in Fibonacci
@@ -161,7 +168,7 @@ public class AlgorithmBasicsExamples {
 		BigInteger term0 = new BigInteger("0"); 
 		BigInteger term1 = new BigInteger("1"); 
 		BigInteger termN = new BigInteger("0");
-		
+
 		//check if the term specified is valid, i.e. non negative
 		if (fibonacciTerm < 0) {
 			System.out.println("Please enter a positive number");
@@ -183,7 +190,7 @@ public class AlgorithmBasicsExamples {
 			}
 			System.out.printf("%d term in Fibonacci sequence is %d \n", fibonacciTerm, termN);
 		}
-		
+
 		//initialize a variable to capture the end time of the method
 		long end = System.currentTimeMillis();
 		//print out the execution time of the method in ms
@@ -191,9 +198,9 @@ public class AlgorithmBasicsExamples {
 	}
 
 
-	
+
 	private static int[] createAndSortRandomIntArray(int arrayLength) {
-		
+
 		// initialize empty array based on length
 		int[] intArray = new int[arrayLength];
 		// generate random integers and assign to array elements
@@ -201,16 +208,16 @@ public class AlgorithmBasicsExamples {
 		for(int i = 0; i < arrayLength; i++) {
 			intArray[i] = random.nextInt(1000);
 		}
-		
+
 		//print out the generated array
 		System.out.println(Arrays.toString(intArray));
-		
+
 		// apply sort
 		Arrays.sort(intArray);
-		
+
 		//print out sorted array
 		System.out.println(Arrays.toString(intArray));
-		
+
 		System.out.println();
 		return intArray;
 	}
