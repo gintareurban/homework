@@ -169,7 +169,8 @@ public class ControlFlowStatementsExamples {
 
 			double d;
 			// calculate Discriminant and provide info about equation solutions for x
-			d = Math.round((b * b - 4 * a * c)*100.0)/100.0;
+			d = b * b - 4 * a * c;
+			//d = Math.round((b * b - 4 * a * c)*100.0)/100.0;
 			if (d > 0) {
 				System.out.printf("Discriminant is %.2f. There are two real solutions for x. \n", d);
 			} else if (d == 0) {
@@ -177,6 +178,7 @@ public class ControlFlowStatementsExamples {
 			} else {
 				System.out.printf("Discriminant is %.2f. Attention: there are two COMPLEX solutions for x \n", d);
 			}
+			
 			repeat = checkIfRepeat();
 
 		}while(repeat);
