@@ -246,7 +246,7 @@ public class AlgorithmBasicsExamples {
 
 
 
-	private static int[] createAndSortRandomIntArray(int arrayLength) { //rewrite using custom sort
+	private static int[] createAndSortRandomIntArray(int arrayLength) {
 
 		// initialize empty array based on length
 		int[] intArray = new int[arrayLength];
