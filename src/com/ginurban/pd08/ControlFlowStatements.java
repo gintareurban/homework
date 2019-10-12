@@ -37,7 +37,7 @@ public class ControlFlowStatements {
 		//8.7 take input and check the type
 		checkInputType();
 		
-		//TODO 8.6 and 8.8 - not sure about the task
+		
 
 	}
 

@@ -6,27 +6,28 @@ import java.util.Random;
 
 /**
  * @author gintare
- * @version 1.1
+ * @version 1.2
  */
 public class AlgorithmBasicsExamples {
 
 
 	public static void main(String[] args) {
 		//10.1 create an int array based on given length, fill it with random ints and sort elements asc
-		createAndSortRandomIntArray(120);
+//		createAndSortRandomIntArray(120);
 
 		//10.2.1 find a specified term in Fibonacci sequence in under 5 secs
-		findFibonacciTerm(120);
+//		findFibonacciTerm(120);
 
 		//10.2.2 create two sorted Array from random integers, find largest values and calculate the average
-		findAverageForMaxValuesOfTwoArrays();
+//		findAverageForMaxValuesOfTwoArrays();
 
 		//10.3 taking the length of an array and the length of an element as arguments, method creates
 		//an array from random chars added to strings and sorts it
-		createAndSortRandomStringArray(10, 8);                   
+		createAndSortRandomStringArray(10, 8);  
+		
 
 		//10.4 create an array of type Long containing a specified number of elements (i.e. 50k) and implement quick sort method
-		createAndQuickSortLongArray(50000);
+//		createAndQuickSortLongArray(50000);
 	}
 
 
@@ -118,7 +119,9 @@ public class AlgorithmBasicsExamples {
 		StringBuilder builder = new StringBuilder();
 		Random random = new Random();
 		char[] charArray = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
-				'L', 'M', 'N', 'O', 'P','Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+				'L', 'M', 'N', 'O', 'P','Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+				'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
+				'l', 'm', 'n', 'o', 'p','q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
 		};
 		String[] stringArray = new String[arrayLength];
 
@@ -132,10 +135,54 @@ public class AlgorithmBasicsExamples {
 
 		//print unsorted array, sort the array and print sorted array
 		System.out.println(Arrays.toString(stringArray));
-		Arrays.sort(stringArray);
+		
+		sortString(stringArray);
 		System.out.println(Arrays.toString(stringArray));
-		System.out.println();
 
+	}
+
+
+
+	private static String[] sortString(String[] stringArray) {
+		
+		String temp = null;
+		boolean swapped = false;
+		
+		for(int i = 0; i < stringArray.length - 1; i++) {
+			swapped = false;
+			
+			for (int j = 0; j < stringArray.length - 1 - i; j++) {
+				int shortLength = 0;
+				if (stringArray[j].length() > stringArray[j+1].length()) {
+					shortLength = stringArray[j+1].length();
+				} else {
+					shortLength = stringArray[j].length();
+				}
+				
+				//loop through the letters in adjacent strings, compare after converting to lowercase
+				for (int k = 0; k < shortLength; k++) {
+					int firstChar = stringArray[j].toLowerCase().charAt(k);
+					int secondChar = stringArray[j+1].toLowerCase().charAt(k);
+										
+					if (firstChar == secondChar) {
+						continue;
+					} else if (firstChar < secondChar) {
+						break;
+					} else if (firstChar > secondChar) {
+						temp = stringArray[j];
+						stringArray[j] = stringArray[j+1];
+						stringArray[j+1] = temp;
+						swapped = true;
+						break;
+					}
+				}
+			}
+						
+			if (swapped == false) {
+				break;
+			}
+		}
+		return stringArray;
 	}
 
 
@@ -199,7 +246,7 @@ public class AlgorithmBasicsExamples {
 
 
 
-	private static int[] createAndSortRandomIntArray(int arrayLength) {
+	private static int[] createAndSortRandomIntArray(int arrayLength) { //rewrite using custom sort
 
 		// initialize empty array based on length
 		int[] intArray = new int[arrayLength];

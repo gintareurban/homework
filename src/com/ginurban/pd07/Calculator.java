@@ -3,7 +3,7 @@
  */
 package com.ginurban.pd07;
 
-import java.util.Scanner;
+import java.util.Scanner;              
 
 /**
  * Calculator class implements an application which 
@@ -16,7 +16,7 @@ public class Calculator {
 
 	public static void main(String[] args) {
 
-		calculatorCall();
+		calculatorCall();  // rewrite using if else instead of switch
 	}
 
 	public static void calculatorCall() {
