@@ -1,6 +1,7 @@
 
 package com.ginurban.pd11;
 
+
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Random;
@@ -8,11 +9,11 @@ import java.util.StringTokenizer;
 
 /**
  * @author gintare
- * @version 1.0
+ * @version 1.1
  */
 public class AlgorithmsPd11 {
 
-	private static int[] numbers = new int [10]; //{66, 44, 110}; 
+	private static int[] numbers = new int [10]; // {90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 9};
 
 	public static void main(String[] args) {
 		//fills array with random integers
@@ -21,100 +22,77 @@ public class AlgorithmsPd11 {
 		System.out.println(Arrays.toString(numbers));
 
 		//11.1 takes integer array as argument and finds Highest Common factor(HCF);
-		System.out.println(findHCF(numbers));
+		int[] fewNumbers = {66, 44, 110};
+		System.out.println("1:\n" + findHCF(fewNumbers));
 
 		//11.2 takes integer array as argument and finds Lowest Common Multiple (LCM);
-		//		System.out.println(findLCM(numbers)); //TODO optimise
+
+		System.out.println("2:\n" + findLCM(fewNumbers));
 
 		//11.3 takes integer array as an argument and returns the biggest possible number composed from the elements of the array
 		//e.g. [2,45,6] -> 6452 
-		System.out.println(findBiggestNumber(numbers));
+		System.out.println("3:\n" + createBiggestNumber(numbers));
 
 
 		//11.4 add elements of two integer arrays
 		int[] numbers2 = new int[5];
 		fillIntArray(numbers2);
-		System.out.println(Arrays.toString(numbers2));
+		System.out.println("4:\n" + Arrays.toString(numbers2));
 		System.out.println(Arrays.toString(addIntArrays(numbers, numbers2)));
 
 		//11.5 count how many times a specific word is repeated in a given text
 		String text = "I scream, you scream, we all scream for ice cream. Is cream ice cream?";
 		String searchWord = "cream";
-		System.out.println(text);
+		System.out.println("5:\n" + text);
 		System.out.println(countWord (text, searchWord));
+
+
+
+
 	}
 
 
-	private static BigInteger findBiggestNumber(int[] numbers) {
 
-		String resultString = "";
-		int[] resultArray = new int[numbers.length];
 
-		for (int i = 0; i < resultArray.length; i++) {
-			// find element with highest first digit
-			int maxElement = numbers[0];
-			int maxIndex = 0;
-			int maxLength = findLength(maxElement);
-			for (int j = 1; j < numbers.length; j++) {
-				//find shorter length between max element and number[j]
-				int shorterLength = 0;
-				if (findLength(numbers[j]) < maxLength) {
-					shorterLength = findLength(numbers[j]);
-				} else {
-					shorterLength = maxLength;
-				}
 
-				int digitIndex = 0;
-				for (int k = digitIndex; k < shorterLength; k++) {
-					if (findDigit(numbers[j], k) > findDigit(maxElement, k)) {
-						maxElement = numbers[j];
-						maxLength = findLength(maxElement);
-						maxIndex = j;
-						break;
-					} else if (findDigit(numbers[j], k) < findDigit(maxElement, k)) {
-						break;
-					}
-					digitIndex = k;
-				}
-				// TODO additional check
-				//if (findDigit(numbers[j], k+1) > findDigit(maxElement, k))
-			}
+	private static BigInteger createBiggestNumber(int[] numbers) {
+		//		create String array and fill with String.valueOf(number)
+		String[] stringArray = new String [numbers.length];
+		for (int i = 0; i < stringArray.length; i++) {
+			stringArray[i] = String.valueOf(numbers[i]);
+		}
 
-			//assign the element with the highest fist digit to the result array
-			resultArray[i] = numbers[maxIndex];
+		String temp = "";
+		boolean swapped = false;
+		for(int i = 0; i < stringArray.length - 1; i++) {
+			swapped = false;
+			for (int j = 0; j < stringArray.length - 1 - i; j++) {
 
-			//take the assigned element from numbers array
-			int[] newNumbers = new int[numbers.length - 1];
-			for (int k = 0, j = 0; k < numbers.length; k++) {
-				if (k == maxIndex) {
-					continue;
-				} else {
-					newNumbers[j] = numbers[k];
-					j++;
+				if ((stringArray[j] + stringArray[j+1]).compareTo(stringArray[j+1] + stringArray[j]) < 0) {
+					temp = stringArray[j];
+					stringArray[j] = stringArray[j+1];
+					stringArray[j+1] = temp;	
+					swapped = true;
 				}
 			}
-			numbers = newNumbers;
+
+			if (swapped == false) {
+				break;
+			}
 		}
 
 		StringBuilder builder = new StringBuilder();
-		for (int number : resultArray) {
-			builder.append(String.valueOf(number));
+		for (String s : stringArray) {
+			builder.append(s);
 		}
-		resultString = builder.toString();
-		BigInteger result = new BigInteger(resultString);
+		BigInteger result = new BigInteger(builder.toString());
 
 		return result;
+
 	}
 
-	private static int findLength(int number) {
-		int length = String.valueOf(number).length();
-		return length;
-	}
 
-	private static int findDigit(int number, int index) {
-		int digit = Integer.parseInt(Integer.toString(number).substring(0 + index,1 + index));
-		return digit;
-	}
+
 
 
 	private static int countWord(String text, String searchWord) {
@@ -195,21 +173,23 @@ public class AlgorithmsPd11 {
 		}
 
 		//find LCM
-		while(true) {		
+		int testMultiple = greatestInt;
+		while(true) {	
+
 			int factorCount = 0;
 			int index = 0;
 			while (index < numbers.length) {
 
-				if (greatestInt % numbers[index] == 0) {
+				if (testMultiple % numbers[index] == 0) {
 					factorCount++;
 				}
 				index++;
 			}
 			if (factorCount == numbers.length) {
-				lcm = greatestInt;
+				lcm = testMultiple;
 				break;
 			}
-			greatestInt++; //optimise
+			testMultiple = testMultiple + greatestInt;
 		}
 		return lcm;
 	}
