@@ -3,6 +3,7 @@
  */
 package com.ginurban.sortTypes;
 
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -11,23 +12,35 @@ import java.util.Random;
  */
 public class JavaSortTypes {
 
-	private static int[] intArray = new int[10000];
+	private static int[] intArray = new int[50000];
 
 	public static void main(String[] args) {
-		fillRandomArray(intArray);
-		printArray(intArray);
+		//fillRandomArray(intArray);
+		fillArrayWithSameValue(intArray);
+		//Arrays.sort(intArray);
+//		printArray(intArray);
+		
 		/* quickSort = quick, bubbleSort = bubble, selectionSort = selection, 
 		 * insertionSort = insertion, mergeSort = merge
-		 * with 10k elements execution time on current machine: merge - 54ms, quick - 41ms,
-		 *  selection - 485ms, insertion - 672ms, bubble - 997ms 
+		 * with 50k elements unsorted execution time on current machine: merge - 832ms, quick - 344ms,
+		 *  selection - 3958ms, insertion - 7135ms, bubble - 14097ms  , builtin - 367ms
 		 */
-		String sortType = "bubble";
+		/* with 50k elements sorted execution time on current machine: merge - 295ms, quick - 718ms,
+		 *  selection - 3289ms, insertion - 106ms, bubble - 53ms  , builtin - 63ms
+		 */
+		/* with 50k same elements execution time on current machine: merge - 1392ms, quick - stackoverflow,
+		 *  selection - 1890ms, insertion - 72ms, bubble - 76ms  , builtin - 31ms
+		 */
+		
+		String sortType = "quick";
 		timer(sortType, intArray);
-		printArray(intArray);
+//		printArray(intArray);
 
 
 
 	}
+
+	
 
 	private static void timer(String sortType, int[] intArray) {
 		long start = System.currentTimeMillis();
@@ -47,6 +60,9 @@ public class JavaSortTypes {
 			break;
 		case "merge":
 			mergeSort(intArray);
+			break;		
+		case "builtin":
+			builtinSort(intArray);
 			break;
 		default:
 			System.out.println("Sort type does not exist");
@@ -57,18 +73,18 @@ public class JavaSortTypes {
 
 
 	}
-	
+
 
 	private static int[] mergeSort(int[] intArray) {
 		int length = intArray.length;
 		if (length < 2) {
 			return null;
 		}
-		
+
 		int mid = length / 2;
 		int [] left = new int[mid];
 		int [] right = new int[length - mid];
-		
+
 		for (int i = 0; i < mid; i++) {
 			left[i] = intArray[i];
 		}
@@ -77,16 +93,16 @@ public class JavaSortTypes {
 		}
 		mergeSort(left);
 		mergeSort(right);
-		
+
 		merge(intArray, left, right);
-		
+
 		return intArray;
 	}
 
 	private static int[] merge(int[] intArray, int[] left, int[] right) {
 		int leftLength = left.length;
 		int rightLength = right.length;
-		
+
 		int i = 0, j = 0, k = 0;
 		while (i < leftLength && j < rightLength) {
 			if (left[i] <= right[j]) {
@@ -113,7 +129,7 @@ public class JavaSortTypes {
 
 	private static void insertionSort(int[] intArray) {
 		// 
-		for (int i = 1; i < intArray.length; i++) {
+		for (int i = 1; i < intArray.length; i++) { //TODO rewrite without using while inside for
 			int keyValue = intArray[i];
 			int j = i - 1;
 			while (j >= 0 && intArray[j] > keyValue) {
@@ -122,7 +138,7 @@ public class JavaSortTypes {
 			}
 			intArray[j + 1] = keyValue;
 		}
-		
+
 	}
 
 	private static void selectionSort(int[] intArray) {
@@ -141,7 +157,7 @@ public class JavaSortTypes {
 	}
 
 	private static int[] quickSort(int[] intArray, int start, int end) {
-		
+
 		// call partition method to find the index of pivot value 
 		int partition = partitionIntArray(intArray, start, end);
 
@@ -209,6 +225,11 @@ public class JavaSortTypes {
 		return intArray;
 	}
 
+	private static int[] builtinSort(int[] intArray) {
+		Arrays.sort(intArray);
+		return intArray;
+	}
+
 
 	private static void printArray(int[] intArray) {
 		for (int number : intArray) {
@@ -226,6 +247,13 @@ public class JavaSortTypes {
 		}
 		return intArray;
 
+	}
+	
+	private static int[] fillArrayWithSameValue(int[] intArray) {
+		for(int i = 0; i < intArray.length; i++) {
+			intArray[i] = 1;
+		}
+		return intArray;
 	}
 
 }
