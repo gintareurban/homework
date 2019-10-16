@@ -1,4 +1,4 @@
-package com.ginurban.pd12;
+package com.ginurban.pd12withoutInterface;
 
 import com.ginurban.CalculatorOOP.Calculator;
 

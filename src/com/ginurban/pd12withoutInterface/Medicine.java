@@ -1,11 +1,11 @@
-package com.ginurban.pd12;
+package com.ginurban.pd12withoutInterface;
 
 import com.ginurban.CalculatorOOP.Calculator;
 
 public class Medicine extends Item {
 	
 
-	private static double VAT = 5;
+	private static final double MED_VAT = 5;
 	
 
 	public Medicine(String name, double priceEURexVAT) {
@@ -15,12 +15,12 @@ public class Medicine extends Item {
 	
 	@Override
 	public double getPriceEURincVAT() {
-		return Calculator.addPercent(getPriceEURexVAT(), this.VAT);
+		return Calculator.addPercent(getPriceEURexVAT(), this.MED_VAT);
 	}
 	
 	@Override
 	public double getPriceUSDincVAT() {
-		return Calculator.multiply(Calculator.addPercent(getPriceEURexVAT(), this.VAT), 1.1);
+		return Calculator.multiply(Calculator.addPercent(getPriceEURexVAT(), this.MED_VAT), 1.1);
 	}
 	
 	

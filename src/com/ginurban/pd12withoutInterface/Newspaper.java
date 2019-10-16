@@ -1,11 +1,11 @@
-package com.ginurban.pd12;
+package com.ginurban.pd12withoutInterface;
 
 import com.ginurban.CalculatorOOP.Calculator;
 
 public class Newspaper extends Item {
 
 	
-	private static double VAT = 9;
+	private static final double NEWSPAPER_VAT = 9;
 	
 	public Newspaper(String name, double priceEURexVAT) {
 		super(name, priceEURexVAT);
@@ -13,12 +13,12 @@ public class Newspaper extends Item {
 
 	@Override
 	public double getPriceEURincVAT() {
-		return Calculator.addPercent(getPriceEURexVAT(), VAT);
+		return Calculator.addPercent(getPriceEURexVAT(), this.NEWSPAPER_VAT);
 	}
 	
 	@Override
 	public double getPriceUSDincVAT() {
-		return Calculator.multiply(Calculator.addPercent(getPriceEURexVAT(), VAT), 1.1);
+		return Calculator.multiply(Calculator.addPercent(getPriceEURexVAT(), this.NEWSPAPER_VAT), 1.1);
 	}
 	
 	

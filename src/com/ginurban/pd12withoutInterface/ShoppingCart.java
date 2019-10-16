@@ -1,4 +1,4 @@
-package com.ginurban.pd12;
+package com.ginurban.pd12withoutInterface;
 
 public class ShoppingCart {
 
