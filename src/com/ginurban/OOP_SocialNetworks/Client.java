@@ -1,4 +1,4 @@
-package com.ginurban.SocialNetworks_OOP;
+package com.ginurban.OOP_SocialNetworks;
 
 public class Client {
 

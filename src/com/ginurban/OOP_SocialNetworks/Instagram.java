@@ -1,9 +1,9 @@
-package com.ginurban.SocialNetworks_OOP;
+package com.ginurban.OOP_SocialNetworks;
 
-public class Twitter implements SocialNetwork {
-
+public class Instagram implements SocialNetwork {
+	
 private Message[] messageLog = new Message[0];
-public static final String NETWORK_NAME = "TWITTER";
+public static final String NETWORK_NAME = "INSTAGRAM";
 	
 	
 	@Override
