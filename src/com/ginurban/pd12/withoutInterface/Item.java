@@ -1,6 +1,6 @@
-package com.ginurban.pd12withoutInterface;
+package com.ginurban.pd12.withoutInterface;
 
-import com.ginurban.CalculatorOOP.Calculator;
+import com.ginurban.OOP_Calculator.Calculator;
 
 public class Item {
 

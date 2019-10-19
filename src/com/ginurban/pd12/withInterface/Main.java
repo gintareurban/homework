@@ -1,4 +1,4 @@
-package com.ginurban.pd12withInterface;
+package com.ginurban.pd12.withInterface;
 
 public class Main {
 

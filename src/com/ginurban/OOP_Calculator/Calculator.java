@@ -1,4 +1,4 @@
-package com.ginurban.CalculatorOOP;
+package com.ginurban.OOP_Calculator;
 
 public class Calculator {
 

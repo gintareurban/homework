@@ -1,4 +1,4 @@
-package com.ginurban.pd12withInterface;
+package com.ginurban.pd12.withInterfaceModified;
 
 public abstract class Product implements CartItems {
 
@@ -19,16 +19,20 @@ public abstract class Product implements CartItems {
 	}
 
 
-
 	public String getName() {
 		return name;
 	}
 	
-	public double getPrice() {
+	
+	public abstract double getVAT();
+	
+	
+	
+	public double getPriceEUR() {
 		return price;
 	}
 	
-	public double getPriceincVAT() {
+	public double getPriceEURincVAT() {
 		return this.price *(1 + this.getVAT());
 	}
 	
@@ -37,7 +41,7 @@ public abstract class Product implements CartItems {
 	}
 	
 	public double getPriceUSDincVAT() {
-		return this.getPriceincVAT() * 1.1;
+		return this.getPriceEURincVAT() * 1.1;
 	}
 	
 	

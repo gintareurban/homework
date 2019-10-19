@@ -1,4 +1,4 @@
-package com.ginurban.pd12withInterface;
+package com.ginurban.pd12.withInterfaceModified;
 
 public class Medicine extends Product implements CartItems {
 	
