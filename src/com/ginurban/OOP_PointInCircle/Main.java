@@ -22,6 +22,8 @@ public class Main {
 		mc.printResult();
 		mc.pointMoveDown();
 		mc.printResult();
+		
+		//TODO rewrite using movable interface for circle, square, rectangle, triangle
 	
 
 	}
