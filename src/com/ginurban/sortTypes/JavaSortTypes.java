@@ -15,8 +15,8 @@ public class JavaSortTypes {
 	private static int[] intArray = new int[50000];
 
 	public static void main(String[] args) {
-		//fillRandomArray(intArray);
-		fillArrayWithSameValue(intArray);
+		fillRandomArray(intArray);
+//		fillArrayWithSameValue(intArray);
 		//Arrays.sort(intArray);
 //		printArray(intArray);
 		
