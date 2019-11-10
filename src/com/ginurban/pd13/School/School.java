@@ -8,6 +8,7 @@ public class School {
 	private String name;
 	private List<Student> students = new ArrayList<>();
 	private List<Teacher> teachers = new ArrayList<>();
+	private List<StudentGroup> groups = new ArrayList<>();
 	
 	public School(String name) {
 		this.name = name;
@@ -19,11 +20,15 @@ public class School {
 	}
 	
 	public void addStudent(Student student) {
-		students.add(student);
-		student.setSchool(this);
+		if (!students.contains(student)) {
+			students.add(student);
+			student.setSchool(this);
+		}
 	}
 	
-	
+	public void addStudentGroup(StudentGroup group) {
+		groups.add(group);
+	}
 
 	public String getName() {
 		return name;

@@ -16,13 +16,13 @@ public class Teacher {
 		schools.add(school);
 	}
 	
-	public void teachStudents(List<Student> students) {
-		System.out.print("Teacher " + this.name + " teaching: ");
-		for (Student student : students) {
+	public void teachStudents(StudentGroup group, String name) {
+		System.out.print("Teacher " + this.name + " teaching " + name + ": ");
+		for (Student student : group.getStudents()) {
 			System.out.print(student.getName() + ", ");
 		}
 		System.out.println();
-		for (Student student : students) {
+		for (Student student : group.getStudents()) {
 			student.learn();
 		}
 	}
